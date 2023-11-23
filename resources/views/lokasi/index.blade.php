@@ -2,10 +2,10 @@
 
 @section('content')
     <div class="section-header">
-        <h1>Data Barang</h1>
+        <h1>Data Lokasi</h1>
         <div class="ml-auto">
-            <a href="/barang/create" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah
-                Produk</a>
+            <a href="/lokasi/create" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah
+                Lokasi</a>
         </div>
     </div>
 
@@ -24,29 +24,23 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Gambar</th>
-                                        <th>Kode Barang</th>
-                                        <th>Nama Barang</th>
+                                        <th>Lokasi</th>
                                         <th>Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($barangs as $barang)
+                                    @foreach ($lokasis as $lokasi)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td><img src="{{ asset('storage/' . $barang->gambar) }}" alt="gambar barang"
-                                                    style="width: 150px"; height="150px"></td>
-                                            <td>{{ $barang->kd_barang }}</td>
-                                            <td>{{ $barang->nm_barang }}</td>
+                                            <td>{{ $lokasi->lokasi }}</td>
                                             <td>
-                                                <a href="/barang/{{ $barang->id }}" class="btn btn-success">Detail</a>
-                                                <a href="/barang/{{ $barang->id }}/edit" class="btn btn-warning">Edit</a>
-                                                <form id="{{ $barang->id }}" action="/barang/{{ $barang->id }}"
+                                                <a href="/lokasi/{{ $lokasi->id }}/edit" class="btn btn-warning">Edit</a>
+                                                <form id="{{ $lokasi->id }}" action="/lokasi/{{ $lokasi->id }}"
                                                     method="POST" class="d-inline">
                                                     @method('delete')
                                                     @csrf
                                                     <div class="btn btn-danger swal-confirm"
-                                                        data-form="{{ $barang->id }}">Hapus
+                                                        data-form="{{ $lokasi->id }}">Hapus
                                                     </div>
                                                 </form>
                                             </td>

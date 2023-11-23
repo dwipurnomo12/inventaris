@@ -3,8 +3,11 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Merk;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Lokasi;
+use App\Models\Kategori;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -32,6 +35,20 @@ class DatabaseSeeder extends Seeder
         ]);
         Role::create([
             'role'  => 'user'
+        ]);
+
+        Kategori::create([
+            'kategori'  => 'Elektronik'
+        ]);
+        Merk::create([
+            'merk'  => 'Lenovo'
+        ]);
+
+        Lokasi::create([
+            'lokasi'  => 'Gedung Utama'
+        ]);
+        Lokasi::create([
+            'lokasi'  => 'Kantor Satpam'
         ]);
     }
 }

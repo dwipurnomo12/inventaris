@@ -3,7 +3,7 @@
         <a href="/">SI Inventaris</a>
     </div>
     <div class="sidebar-brand sidebar-brand-sm">
-        <a href="i/">SI</a>
+        <a href="/">SI</a>
     </div>
     <ul class="sidebar-menu">
         <li class="menu-header">Dashboard</li>
@@ -11,18 +11,44 @@
                 <span>Dashboard</span></a>
         </li>
 
-        <li class="menu-header">Data Master</li>
-        <li><a class="nav-link" href="/barang"><i class="fa fa-solid fa-cubes-stacked"></i>
-                <span>Barang</span></a>
-        </li>
-        <li><a class="nav-link" href="/kategori"><i class="fa fa-solid fa-list"></i>
-                <span>Kategori</span></a>
-        </li>
-        <li><a class="nav-link" href="/satuan"><i class="fa fa-solid fa-list-ol"></i>
-                <span>Satuan</span></a>
-        </li>
-        <li><a class="nav-link" href="/satuan"><i class="fa fa-solid fa-school"></i>
-                <span>Lokasi</span></a>
-        </li>
+        @if (auth()->user()->role->role == 'admin')
+            <li class="menu-header">Data Master</li>
+            <li><a class="nav-link" href="/barang"><i class="fa fa-solid fa-cubes-stacked"></i>
+                    <span>Barang</span></a>
+            </li>
+            <li><a class="nav-link" href="/kategori"><i class="fa fa-solid fa-list"></i>
+                    <span>Kategori</span></a>
+            </li>
+            <li><a class="nav-link" href="/merk"><i class="fa fa-regular fa-copyright"></i>
+                    <span>Merek</span></a>
+            </li>
+            <li><a class="nav-link" href="/lokasi"><i class="fa fa-solid fa-school"></i>
+                    <span>Lokasi</span></a>
+            </li>
+
+            <li class="menu-header">Pelaporan</li>
+            <li><a class="nav-link" href="/pelaporan-masuk"><i class="fa fa-solid fa-file-arrow-down"></i>
+                    <span>Pelaporan masuk</span></a>
+            </li>
+        @else
+            <li class="menu-header">Data Master</li>
+            <li><a class="nav-link" href="/barang"><i class="fa fa-solid fa-cubes-stacked"></i>
+                    <span>Barang</span></a>
+            </li>
+            <li><a class="nav-link" href="/kategori"><i class="fa fa-solid fa-list"></i>
+                    <span>Kategori</span></a>
+            </li>
+            <li><a class="nav-link" href="/merk"><i class="fa fa-regular fa-copyright"></i>
+                    <span>Merek</span></a>
+            </li>
+            <li><a class="nav-link" href="/lokasi"><i class="fa fa-solid fa-school"></i>
+                    <span>Lokasi</span></a>
+            </li>
+
+            <li class="menu-header">Pelaporan</li>
+            <li><a class="nav-link" href="/tambah-pelaporan"><i class="fa fa-solid fa-file-arrow-down"></i>
+                    <span>Tambah Pelaporan</span></a>
+            </li>
+        @endif
     </ul>
 </aside>

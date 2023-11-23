@@ -58,16 +58,50 @@
     <script src="/assets/modules/moment.min.js"></script>
     <script src="/assets/js/stisla.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    </script>
+
     <!-- Datatable JQuery -->
     <script type="text/javascript" src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 
     <!-- Sweet Alert -->
     @include('sweetalert::alert')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        $(".swal-confirm").click(function(e) {
+            e.preventDefault();
+            var form = $(this).attr('data-form');
+            Swal.fire({
+                title: 'Hapus Data Ini ',
+                text: "Anda tidak akan dapat mengembalikan data yang dihapus !",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $('#' + form).submit();
+                }
+            })
+        });
+    </script>
 
     <!-- Template JS File -->
     <script src="/assets/js/scripts.js"></script>
     <script src="/assets/js/custom.js"></script>
+
+    <!-- Link active class -->
+    <script>
+        var currentUrl = window.location.pathname;
+        var activeElement = document.querySelector('.sidebar-menu a[href="' + currentUrl + '"]');
+
+        if (activeElement) {
+            activeElement.parentNode.classList.add('active');
+        }
+    </script>
 </body>
 
 </html>
