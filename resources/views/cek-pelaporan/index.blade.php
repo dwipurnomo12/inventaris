@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('content')
     <div class="section-header">
-        <h1>Pelaporan Masuk</h1>
+        <h1>Cek Status Pelaporan</h1>
     </div>
 
     <div class="section-body">
@@ -23,7 +23,7 @@
                                         <th>Status</th>
                                         <th>Nama Barang</th>
                                         <th>Lokasi</th>
-                                        <th>Lihat</th>
+                                        <th>Dikirim Tanggal</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -42,10 +42,7 @@
                                             </td>
                                             <td>{{ $pelaporan->barang->nm_barang }}</td>
                                             <td>{{ $pelaporan->barang->lokasi->lokasi }}</td>
-                                            <td>
-                                                <a href="/pelaporan-masuk/detail/{{ $pelaporan->id }}"
-                                                    class="btn btn-success">Detail</a>
-                                            </td>
+                                            <td>{{ $pelaporan->created_at }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

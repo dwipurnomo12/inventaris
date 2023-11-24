@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('content')
     <div class="section-header">
-        <h1>Pelaporan Masuk</h1>
+        <h1>History Pelaporan Selesai</h1>
     </div>
 
     <div class="section-body">
@@ -23,7 +23,8 @@
                                         <th>Status</th>
                                         <th>Nama Barang</th>
                                         <th>Lokasi</th>
-                                        <th>Lihat</th>
+                                        <th>Tgl. Pelaporan</th>
+                                        <th>Selesai Perbaikan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -31,21 +32,11 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $pelaporan->judul }}</td>
-                                            <td>
-                                                @if ($pelaporan->status == 'menunggu')
-                                                    <span class="badge badge-warning m-2">{{ $pelaporan->status }}</span>
-                                                @elseif($pelaporan->status == 'sedang diperbaiki')
-                                                    <span class="badge badge-primary m-2">{{ $pelaporan->status }}</span>
-                                                @elseif($pelaporan->status == 'selesai')
-                                                    <span class="badge badge-success m-2">{{ $pelaporan->status }}</span>
-                                                @endif
-                                            </td>
+                                            <td><span class="badge badge-success m-2">{{ $pelaporan->status }}</span></td>
                                             <td>{{ $pelaporan->barang->nm_barang }}</td>
                                             <td>{{ $pelaporan->barang->lokasi->lokasi }}</td>
-                                            <td>
-                                                <a href="/pelaporan-masuk/detail/{{ $pelaporan->id }}"
-                                                    class="btn btn-success">Detail</a>
-                                            </td>
+                                            <td>{{ $pelaporan->created_at }}</td>
+                                            <td>{{ $pelaporan->updated_at }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

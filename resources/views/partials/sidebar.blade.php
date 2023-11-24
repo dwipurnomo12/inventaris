@@ -30,6 +30,17 @@
             <li><a class="nav-link" href="/pelaporan-masuk"><i class="fa fa-solid fa-file-arrow-down"></i>
                     <span>Pelaporan masuk</span></a>
             </li>
+            <li><a class="nav-link" href="/pelaporan-selesai"><i class="fa fa-sharp fa-file-circle-check"></i>
+                    <span>Pelaporan Selesai</span></a>
+            </li>
+
+            <li class="menu-header">Laporan</li>
+            <li><a class="nav-link" href="/laporan-inventaris"><i class="fa fa-solid fa-print"></i>
+                    <span>Laporan Aset</span></a>
+            </li>
+            <li><a class="nav-link" href="/laporan-perbaikan"><i class="fa fa-regular fa-file-pdf"></i>
+                    <span>Laporan Perbaikan</span></a>
+            </li>
         @else
             <li class="menu-header">Data Master</li>
             <li><a class="nav-link" href="/barang"><i class="fa fa-solid fa-cubes-stacked"></i>
@@ -48,6 +59,9 @@
             <li class="menu-header">Pelaporan</li>
             <li><a class="nav-link" href="/tambah-pelaporan"><i class="fa fa-solid fa-file-arrow-down"></i>
                     <span>Tambah Pelaporan</span></a>
+            </li>
+            <li><a class="nav-link" href="/cek-pelaporan"><i class="fa fa-solid fa-file-circle-question"></i>
+                    <span>Cek Pelaporan</span></a>
             </li>
         @endif
     </ul>

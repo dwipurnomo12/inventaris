@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('judul');
             $table->text('deskripsi');
-            $table->enum('status', ['pending', 'diperbaiki', 'terkirim'])->default('terkirim');
+            $table->enum('status', ['menunggu', 'sedang diperbaiki', 'selesai'])->default('menunggu');
             $table->foreignId('barang_id');
             $table->timestamps();
         });

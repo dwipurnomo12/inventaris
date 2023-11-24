@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Barang;
+use App\Models\Lokasi;
+use App\Models\Pelaporan;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
@@ -23,6 +27,22 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $totalInventaris    = Barang::count();
+        $totalLokasi        = Lokasi::count();
+        $pelaporanPending   = Pelaporan::where('status', 'menunggu')->count();
+        $pelaporanSelesai   = Pelaporan::where('status', 'selesai')->count();
+        $pendings           = Pelaporan::where('status', 'menunggu')->get();
+        $dikerjakans        = Pelaporan::where('status', 'sedang diperbaiki')->get();
+        $cekPelaporan       = Pelaporan::orderBy('id', 'DESC')->get();
+
+        return view('home', [
+            'totalInventaris'   => $totalInventaris,
+            'totalLokasi'       => $totalLokasi,
+            'pelaporanPending'  => $pelaporanPending,
+            'pelaporanSelesai'  => $pelaporanSelesai,
+            'pendings'          => $pendings,
+            'dikerjakans'       => $dikerjakans,
+            'cekPelaporans'     => $cekPelaporan
+        ]);
     }
 }
