@@ -25,6 +25,7 @@
                                         <th>Lokasi</th>
                                         <th>Tgl. Pelaporan</th>
                                         <th>Selesai Perbaikan</th>
+                                        <th>Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -37,6 +38,10 @@
                                             <td>{{ $pelaporan->barang->lokasi->lokasi }}</td>
                                             <td>{{ $pelaporan->created_at }}</td>
                                             <td>{{ $pelaporan->updated_at }}</td>
+                                            <td>
+                                                <a href="/pelaporan-selesai/cetak-laporan/{{ $pelaporan->id }}"
+                                                    class="btn btn-primary">Print</a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

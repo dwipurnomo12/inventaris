@@ -45,6 +45,7 @@ Route::middleware('auth')->group(function () {
         Route::put('/pelaporan-masuk/detail/{pelaporan:id}/perbaiki', [PelaporanMasukController::class, 'perbaiki']);
         Route::put('/pelaporan-masuk/detail/{pelaporan:id}/selesai', [PelaporanMasukController::class, 'selesai']);
 
+        Route::get('/pelaporan-selesai/cetak-laporan/{id}', [PelaporanSelesaiController::class, 'cetakLaporan']);
         Route::get('/pelaporan-selesai', [PelaporanSelesaiController::class, 'index']);
 
         Route::get('/laporan-inventaris', [LaporanInventarisController::class, 'index']);
