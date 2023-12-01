@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pelaporan extends Model
+class Feedback extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
 
-    public function barang()
+    public function pelaporans()
     {
-        return $this->belongsTo(Barang::class);
+        return $this->hasMany(Pelaporan::class);
     }
 
-    public function feedback()
+    public function feedbackReply()
     {
         return $this->belongsTo(Feedback::class);
     }

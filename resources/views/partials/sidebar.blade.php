@@ -63,6 +63,9 @@
             <li><a class="nav-link" href="/cek-pelaporan"><i class="fa fa-solid fa-file-circle-question"></i>
                     <span>Cek Pelaporan</span></a>
             </li>
+            <li><a class="nav-link" href="/pelaporan-selesai"><i class="fa fa-sharp fa-file-circle-check"></i>
+                    <span>Pelaporan Selesai</span></a>
+            </li>
         @endif
     </ul>
 </aside>

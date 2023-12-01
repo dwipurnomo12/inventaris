@@ -10,7 +10,7 @@
     <div class="section-header">
         <h1>Detail Pelaporan</h1>
         <div class="ml-auto">
-            <a href="/pelaporan-masuk" class="btn btn-secondary"><i class="fa fa-back"></i> Kembali</a>
+            <a href="/cek-pelaporan" class="btn btn-secondary"><i class="fa fa-back"></i> Kembali</a>
         </div>
     </div>
 
@@ -99,64 +99,41 @@
             <div class="col-lg-4">
                 <div class="card card-primary">
                     <div class="card-header">
-                        Aksi
+                        Analisis Perbaikan & Feedback
                     </div>
                     <div class="card-body">
-                        @if ($pelaporan->status == 'menunggu')
-                            <div class="alert alert-light mb-4">
-                                <i class="fa-solid fa-angles-right"></i> Button "Perbaiki" menandakan bahwa barang sedang
-                                diperbaiki <br><br>
-                                <i class="fa-solid fa-angles-right"></i> Button "Selesai" menandakan bahwa barang sudah
-                                diperbaiki
+                        @if ($feedback && $feedback->analisis_perbaikan)
+                            <label for="analisis_perbaikan">From Admin</label><br>
+                            <div class="alert alert-light">
+                                {{ $feedback->analisis_perbaikan }}
                             </div>
-                            <form id="perbaikiForm{{ $pelaporan->id }}"
-                                action="/pelaporan-masuk/detail/{{ $pelaporan->id }}/perbaiki" class="d-inline float-right"
-                                method="POST">
-                                @method('put')
-                                @csrf
-                                <button type="button" class="btn btn-primary"
-                                    onclick="confirmPerbaiki('{{ $pelaporan->id }}')">
-                                    <i class="fas fa-solid fa-screwdriver-wrench"></i> Perbaiki
-                                </button>
-                            </form>
-                        @elseIf($pelaporan->status == 'sedang diperbaiki')
-                            <div class="alert alert-light mb-4">
-                                <i class="fa-solid fa-angles-right"></i> Button "Perbaiki" menandakan bahwa barang sedang
-                                diperbaiki <br><br>
-                                <i class="fa-solid fa-angles-right"></i> Button "Selesai" menandakan bahwa barang sudah
-                                diperbaiki
-                            </div>
-                            <form id="selesaiForm{{ $pelaporan->id }}"
-                                action="/pelaporan-masuk/detail/{{ $pelaporan->id }}/selesai" method="POST">
-                                @method('put')
-                                @csrf
-                                <input type="hidden" name="pelaporan_id" value="{{ $pelaporan->id }}">
-                                <div class="form-group">
-                                    <label for="analisis_perbaikan">Analisis Perbaikan</label>
-                                    <textarea class="form-control" name="analisis_perbaikan" id="analisis_perbaikan" cols="30" rows="10" required></textarea>
-                                </div>
-                                <button type="button" class="btn btn-success"
-                                    onclick="confirmSelesai('{{ $pelaporan->id }}')">
-                                    <i class="fas fa-check"></i> Kirim & Selesai
-                                </button>
-                            </form>
-                        @elseif($pelaporan->status == 'selesai')
-                            @if ($feedback && $feedback->analisis_perbaikan)
-                                <label for="analisis_perbaikan">From Admin</label><br>
-                                <div class="alert alert-light">
-                                    {{ $feedback->analisis_perbaikan }}
-                                </div>
-                            @else
-                            @endif
-
-                            @if ($feedbackReply && $feedbackReply->feedback_replies && $feedbackReply->feedback_replies)
-                                <label for="feedback_replies">From User</label><br>
-                                <div class="alert alert-primary">
-                                    {{ $feedbackReply->feedback_replies }}
-                                </div>
-                            @endif
+                        @else
                         @endif
 
+                        @if ($feedbackReply && $feedbackReply->feedback_replies && $feedbackReply->feedback_replies)
+                            <label for="feedback_replies">From User</label><br>
+                            <div class="alert alert-primary">
+                                {{ $feedbackReply->feedback_replies }}
+                            </div>
+                        @endif
+
+                        <hr>
+
+                        <form action="/cek-pelaporan/detail/{{ $pelaporan->id }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="feedback_id" value="{{ $feedback ? $feedback->id : null }}">
+                            @if ($feedbackReply && $feedbackReply->feedback_replies && $feedbackReply->feedback_replies)
+                            @else
+                                <div class="mb-3">
+                                    <label for="feedback_replies">Berikan Feedback</label>
+                                    <textarea class="form-control" name="feedback_replies" id="feedback_replies" cols="30" rows="10"></textarea>
+                                    @error('feedback_replies')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <button type="submit" class="btn btn-success my-3 float-right">Kirim Balasan</button>
+                            @endif
+                        </form>
                     </div>
                 </div>
             </div>

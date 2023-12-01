@@ -24,6 +24,7 @@
                                         <th>Nama Barang</th>
                                         <th>Lokasi</th>
                                         <th>Dikirim Tanggal</th>
+                                        <th>Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -43,6 +44,8 @@
                                             <td>{{ $pelaporan->barang->nm_barang }}</td>
                                             <td>{{ $pelaporan->barang->lokasi->lokasi }}</td>
                                             <td>{{ $pelaporan->created_at }}</td>
+                                            <td><a href="/cek-pelaporan/detail/{{ $pelaporan->id }}"
+                                                    class="btn btn-primary">Detail</a></td>
                                         </tr>
                                     @endforeach
                                 </tbody>

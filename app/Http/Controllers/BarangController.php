@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Merk;
 use App\Models\Barang;
 use App\Models\Lokasi;
+use App\Models\Feedback;
 use App\Models\Kategori;
+use App\Models\Pelaporan;
 use Endroid\QrCode\QrCode;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -105,11 +107,17 @@ class BarangController extends Controller
      */
     public function show(string $id)
     {
-        $barang = Barang::find($id);
-        $qrCode = new QrCode($barang->kd_barang);
+        $laporan    = Pelaporan::find($id);
+        $feedback   = Feedback::where('pelaporan_id', $laporan->id)->first();
+        $barang     = Barang::find($id);
+        $pelaporan  = Pelaporan::where('barang_id', $barang->id)->get();
+        $qrCode     = new QrCode($barang->kd_barang);
+
         return view('barang.show', [
-            'barang'    => $barang,
-            'qrCode'    => $qrCode
+            'barang'      => $barang,
+            'pelaporans'  => $pelaporan,
+            'feedback'    => $feedback,
+            'qrCode'      => $qrCode
         ]);
     }
 

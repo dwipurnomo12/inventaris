@@ -69,6 +69,32 @@
                             </tr>
                         </table>
                     </div>
+                    <hr>
+                    <div class="card-body">
+                        <div class="section-title mt-0">History Perbaikan barang</div>
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Pelaporan</th>
+                                    <th scope="col">Deskripsi</th>
+                                    <th scope="col">Analisis Perbaikan</th>
+                                    <th scope="col">Tanggal Perbaikan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($pelaporans as $pelaporan)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $pelaporan->judul }}</td>
+                                        <td>{{ $pelaporan->deskripsi }}</td>
+                                        <td>{{ $feedback->analisis_perbaikan }}</td>
+                                        <td>{{ $pelaporan->updated_at }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

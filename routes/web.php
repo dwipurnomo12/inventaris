@@ -37,6 +37,9 @@ Route::middleware('auth')->group(function () {
         Route::resource('/kategori', KategoriController::class);
         Route::resource('/merk', MerkController::class);
         Route::resource('/lokasi', LokasiController::class);
+
+        Route::get('/pelaporan-selesai/cetak-laporan/{id}', [PelaporanSelesaiController::class, 'cetakLaporan']);
+        Route::get('/pelaporan-selesai', [PelaporanSelesaiController::class, 'index']);
     });
 
     Route::group(['middleware'  => 'CheckRole:admin'], function () {
@@ -44,9 +47,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/pelaporan-masuk/detail/{id}', [PelaporanMasukController::class, 'detail']);
         Route::put('/pelaporan-masuk/detail/{pelaporan:id}/perbaiki', [PelaporanMasukController::class, 'perbaiki']);
         Route::put('/pelaporan-masuk/detail/{pelaporan:id}/selesai', [PelaporanMasukController::class, 'selesai']);
-
-        Route::get('/pelaporan-selesai/cetak-laporan/{id}', [PelaporanSelesaiController::class, 'cetakLaporan']);
-        Route::get('/pelaporan-selesai', [PelaporanSelesaiController::class, 'index']);
 
         Route::get('/laporan-inventaris', [LaporanInventarisController::class, 'index']);
         Route::get('/laporan-inventaris/laporan', [LaporanInventarisController::class, 'cetakLaporan']);
@@ -61,5 +61,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/tambah-pelaporan', [TambahPelaporanController::class, 'store']);
 
         Route::get('/cek-pelaporan', [CekPelaporanController::class, 'index']);
+        Route::get('/cek-pelaporan/detail/{id}', [CekPelaporanController::class, 'detail']);
+        Route::post('/cek-pelaporan/detail/{id}', [CekPelaporanController::class, 'store']);
     });
 });

@@ -89,7 +89,7 @@
                     <td>{{ $pelaporan->barang->merk->merk }}</td>
                 </tr>
                 <tr>
-                    <td><strong>Kategpri</strong></td>
+                    <td><strong>Kategori</strong></td>
                     <td>:</td>
                     <td>{{ $pelaporan->barang->kategori->kategori }}</td>
                 </tr>
@@ -109,6 +109,19 @@
                     <td>{{ $pelaporan->updated_at }}</td>
                 </tr>
 
+            </table>
+            <hr>
+            <table>
+                <tr>
+                    <td><b>Analisis Perbaikan</b></td>
+                    <td>:</td>
+                    <td>{{ $feedback->analisis_perbaikan }}</td>
+                </tr>
+                <tr>
+                    <td><b>Feedback User</b></td>
+                    <td>:</td>
+                    <td>{{ $feedbackReply->feedback_replies }}</td>
+                </tr>
             </table>
         </div>
     </div>
